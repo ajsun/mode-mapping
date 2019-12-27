@@ -1,0 +1,52 @@
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+    integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+    crossorigin="">
+<script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+    integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+    crossorigin=""></script>
+<script src='https://cdn.jsdelivr.net/npm/leaflet-curve@1.0.0/leaflet.curve.min.js'></script>
+<link rel="stylesheet" href="./mapping.css">
+<script src="./mapping.js"></script>
+<div>
+
+    <div id='chart_7937b5ae6693'>
+    </div>
+
+</div>
+<script>
+    var datasets = [
+        {
+            token: "c9e592ebc82f",
+            query_token: "c9e592ebc82f",
+            content: [
+                { gh6: '9q5c2j', avg_battery: 54, lat: 37.762946166, lng: -122.4329126, to_lat: 37.762946166, to_lng: -122.4129126 },
+                { gh6: '9q5c2j', avg_battery: 14, lat: 37.742946166, lng: -122.4229126, to_lat: 37.762946166, to_lng: -122.4129126 },
+                { gh6: '9q5c2j', avg_battery: 74, lat: 37.722946166, lng: -122.4429126, to_lat: 37.762946166, to_lng: -122.4129126 },
+                { gh6: '9q5c2j', avg_battery: 24, lat: 37.742946166, lng: -122.4329126, to_lat: 37.762946166, to_lng: -122.4129126 },
+                { gh6: '9q5c2j', avg_battery: 44, lat: 37.712946166, lng: -122.4229126, to_lat: 37.762946166, to_lng: -120.4129126 },
+            ],
+            columns: [
+                { type: 'string', name: 'gh6' },
+                { type: 'integer', name: 'avg_battery' },
+                { type: 'float', name: 'lat' },
+                { type: 'float', name: 'lng' },
+            ],
+            queryName: "Query 1"
+        }
+    ]
+</script>
+<script>
+    (function () {
+            mapping.plt.points({
+                map_id: 'chart_7937b5ae6693',
+                token: '',
+                query_name: 'Query 1',
+                lat_col: 'lat',
+                lng_col: 'lng',
+                center: [37.716098, -122.415694],
+                zoom: 12,
+                color_by_col: 'avg_battery'
+            })
+
+    })()
+</script>
