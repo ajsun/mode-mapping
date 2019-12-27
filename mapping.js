@@ -14,9 +14,7 @@ var mapping = function () {
     }
 
     var basemap = {
-        init: function (
-            o
-        ) {
+        init: function (o) {
             var map_id = o['map_id'],
                 mapbox_token = o['mapbox_token'],
                 center = o['center'] || [39.09, -98.505],
@@ -25,7 +23,8 @@ var mapping = function () {
             var container = L.DomUtil.get(map_id)
             container.innerHTML = ''
             container.style.display = 'block'
-            container.style.height = '100vh'
+            container.style.height = '100%'
+            container.style.width = '100%'
             var map = L.map(map_id).setView(center, zoom)
             if (mapbox_token) {
                 L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
