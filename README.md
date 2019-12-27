@@ -10,8 +10,8 @@
     integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
     crossorigin=""></script>
 <script src='https://cdn.jsdelivr.net/npm/leaflet-curve@1.0.0/leaflet.curve.min.js'></script>
-<script src='https://cdn.jsdelivr.net/gh/ajsun/mode-mapping@master/mapping.js'></script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/ajsun/mode-mapping@master/mapping.css">
+<script src='https://cdn.jsdelivr.net/gh/ajsun/mode-mapping@0.0.1/mapping.js'></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/ajsun/mode-mapping@0.0.1/mapping.css">
 ```
 
 2. Make any mode chart thats the same size as where you want the map.
