@@ -28,6 +28,8 @@ var mapping = function () {
             chart.innerHTML = ''
             container.style.display = 'block'
             container.style.height = height
+
+            var map = L.map(container).setView(center, zoom)
             if (mapbox_token) {
                 L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
                     attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
