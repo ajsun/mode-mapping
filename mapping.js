@@ -80,7 +80,7 @@ var mapping = function () {
             };
             // method that we will use to update the control based on feature properties passed
             info.update = function (props) {
-                this._div.innerHTML = util.generateDataHTML(inferred_columns.data, props)
+                this._div.innerHTML = props ? util.generateDataHTML(inferred_columns.data, props) : 'Hover over something'
             };
 
             function style(feature) {
@@ -136,7 +136,7 @@ var mapping = function () {
             for (var i = 0; i < data.length; i++) {
                 var row = data[i]
                 // need to add the row params to the feature
-                geojson.addData(util.parseAndAddProps(row.geojson, row))
+                geojson.addData(util.parseAndAddProps(row[geojsonCol], row))
             }
 
             info.addTo(map)
