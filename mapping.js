@@ -18,13 +18,16 @@ var mapping = function () {
             var map_id = o['map_id'],
                 mapbox_token = o['mapbox_token'],
                 center = o['center'] || [39.09, -98.505],
-                zoom = o['zoom'] || 10
+                zoom = o['zoom'] || 10,
+                height = o['height'] ? o['height'] + ' px' : '50vh'
             if (!map_id) console.error('Need map_id')
-            var container = L.DomUtil.get(map_id)
-            container.innerHTML = ''
+            var chart = L.DomUtil.get(map_id)
+            var parent = chart.parentNode
+            var container = L.DomUtil.create('div', 'map-container', parent)
+
+            chart.innerHTML = ''
             container.style.display = 'block'
-            container.style.height = '50vh'
-            var map = L.map(map_id).setView(center, zoom)
+            container.style.height = height
             if (mapbox_token) {
                 L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
                     attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
@@ -45,6 +48,7 @@ var mapping = function () {
         geojson: function (o) {
             // PARAMS: map_id, token, query_name
             var mapId = o['map_id'],
+                height = o['height'],
                 token = o['token'] || null,
                 queryName = o['query_name'] || 'Query 1',
                 center = o['center'],
@@ -60,7 +64,8 @@ var mapping = function () {
                 map_id: mapId,
                 mapbox_token: token,
                 center: center,
-                zoom: zoom
+                zoom: zoom,
+                height: height
             })
 
             var inferred_columns = util.inferColumns(mode.getQueryColumns(queryName))
@@ -145,6 +150,7 @@ var mapping = function () {
         points: function (o) {
             // PARAMS: map_id, token*, query_name, lat_col*, lng_col*
             var mapId = o['map_id'],
+                height = o['height'],
                 token = o['token'],
                 queryName = o['query_name'] || 'Query 1',
                 lat = o['lat_col'],
@@ -162,7 +168,8 @@ var mapping = function () {
                 map_id: mapId,
                 mapbox_token: token,
                 center: center,
-                zoom: zoom
+                zoom: zoom,
+                height: height
             })
             var inferred_columns = util.inferColumns(mode.getQueryColumns(queryName))
             lat = lat || inferred_columns.lat
@@ -187,6 +194,7 @@ var mapping = function () {
         geohashes: function (o) {
             // PARAMS: map_id, token*, query_name, lat_col*, lng_col*, geohash_col*, fillOpacity*
             var mapId = o['map_id'],
+                height = o['height'],
                 token = o['token'],
                 queryName = o['query_name'] || 'Query 1',
                 lat = o['lat_col'],
@@ -209,7 +217,8 @@ var mapping = function () {
                 map_id: mapId,
                 mapbox_token: token,
                 center: center,
-                zoom: zoom
+                zoom: zoom,
+                height: height
             })
             
             colorBounds = colorBounds || util.inferColorBounds(colorBy, data)
@@ -235,6 +244,7 @@ var mapping = function () {
         arcs: function (o) {
             // PARAMS: map_id, token*, query_name, lat_col*, lng_col*, fillOpacity*
             var mapId = o['map_id'],
+                height = o['height'],
                 token = o['token'],
                 queryName = o['query_name'] || 'Query 1',
                 fromLat = o['from_lat'],
@@ -256,7 +266,8 @@ var mapping = function () {
                 map_id: mapId,
                 mapbox_token: token,
                 center: center,
-                zoom: zoom
+                zoom: zoom,
+                height: height
             })
 
             colorBounds = colorBounds || util.inferColorBounds(colorBy, data)
