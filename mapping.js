@@ -19,7 +19,7 @@ var mapping = function () {
                 mapbox_token = o['mapbox_token'],
                 center = o['center'] || [39.09, -98.505],
                 zoom = o['zoom'] || 10,
-                height = o['height'] ? o['height'] + ' px' : '50vh'
+                height = o['height'] ? o['height'] + 'px' : '50vh'
             if (!map_id) console.error('Need map_id')
             var chart = L.DomUtil.get(map_id)
             var parent = chart.parentNode
