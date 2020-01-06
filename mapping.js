@@ -90,7 +90,7 @@ var mapping = function () {
 
             function style(feature) {
                 return {
-                    fillColor: util.getColor(feature[colorBy], colorScale),
+                    fillColor: util.getColor(feature.properties[colorBy], colorScale),
                     weight: 2,
                     opacity: 1,
                     color: 'white',
