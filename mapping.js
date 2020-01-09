@@ -450,7 +450,7 @@ var mapping = function () {
                 '#135B96',
                 '#FFB38F'
             ]
-            var SEQUENTIAL_9 = ['#fcfbfd', '#efedf5', '#dadaeb', '#bcbddc', '#9e9ac8', '#807dba', '#6a51a3', '#54278f', '#3f007d']
+            var SEQUENTIAL_9 = ['#fff7fb', '#ece2f0', '#d0d1e6', '#a6bddb', '#67a9cf', '#3690c0', '#02818a', '#016c59', '#014636']
 
             var chunk_size = (max - min) * 1.0 / n
             var breaks = []
