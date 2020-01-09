@@ -421,13 +421,36 @@ var mapping = function () {
         generateColorScale: function(bounds, n, type) {
             var min = bounds[0],
                 max = bounds[1]
+            var LYFT_CATEGORICAL_EXTENDED = [
+                '#523BE4',
+                '#FF5187',
+                '#347D00',
+                '#82D2FF',
+                '#651A00',
+                '#8481FF',
+                '#E51966',
+                '#A4DC48',
+                '#043563',
+                '#FF7232',
+                '#665AFF',
+                '#FFA0BA',
+                '#155600',
+                '#3A97D3',
+                '#D03D00',
+                '#BABAFF',
+                '#8B0040',
+                '#5EAB00',
+                '#135B96',
+                '#FFB38F'
+            ]
             var PALETTE_10 = ['#543005', '#8c510a', '#bf812d', '#dfc27d', '#f6e8c3', '#c7eae5', '#80cdc1', '#35978f', '#01665e', '#003c30']
+
             var chunk_size = (max - min) * 1.0 / n
             var breaks = []
             var colors = []
             for (var i = 0; i < n; i++) {
                 breaks.push(min + chunk_size * (i + 1))
-                colors.push(PALETTE_10[i])
+                colors.push(LYFT_CATEGORICAL_EXTENDED[i])
             }
             
             return {
