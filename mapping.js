@@ -163,7 +163,7 @@ var mapping = function () {
                 zoom = o['zoom'],
                 colorBy = o['color_by_col'],
                 colorBounds = o['color_by_bounds'],
-                numColors = o['num_colors'] || 4
+                numColors = o['num_colors'] || 1
 
             var data = mode.getQueryContent(queryName)
             var map = basemap.init({
@@ -259,7 +259,7 @@ var mapping = function () {
                 radius = o['radius'] || 10,
                 colorBy = o['color_by_col'],
                 colorBounds = o['color_by_bounds'],
-                numColors = o['num_colors'] || 4
+                numColors = o['num_colors'] || 1
 
             var data = mode.getQueryContent(queryName)
             var inferred_columns = util.inferColumns(mode.getQueryColumns(queryName))
