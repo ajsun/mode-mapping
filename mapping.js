@@ -59,7 +59,8 @@ var mapping = function () {
                 fillOpacity = o['fillOpacity'] || 0.5,
                 colorBy = o['color_by_col'],
                 colorBounds = o['color_by_bounds'],
-                numColors = o['num_colors'] || 4
+                numColors = o['num_colors'] || 4,
+                colorScheme = o['color_scheme'] || 'sequential' // one of ('categorical' or 'sequential') default sequential
 
             var data = mode.getQueryContent(queryName)
             var map = basemap.init({
@@ -74,7 +75,7 @@ var mapping = function () {
             geojsonCol = geojsonCol || inferred_columns.geojson
 
             colorBounds = colorBounds || util.inferColorBounds(colorBy, data)
-            var colorScale = util.generateColorScale(colorBounds, numColors)
+            var colorScale = util.generateColorScale(colorBounds, numColors, colorScheme)
             var legend = util.generateLegend(colorScale, colorBy)
 
             var info = L.control();
@@ -163,7 +164,9 @@ var mapping = function () {
                 zoom = o['zoom'],
                 colorBy = o['color_by_col'],
                 colorBounds = o['color_by_bounds'],
-                numColors = o['num_colors'] || 1
+                numColors = o['num_colors'] || 1,
+                colorScheme = o['color_scheme'] || 'categorical' // one of ('categorical' or 'sequential') default categorical
+
 
             var data = mode.getQueryContent(queryName)
             var map = basemap.init({
@@ -178,7 +181,7 @@ var mapping = function () {
             lng = lng || inferred_columns.lng
 
             colorBounds = colorBounds || util.inferColorBounds(colorBy, data)
-            var colorScale = util.generateColorScale(colorBounds, numColors)
+            var colorScale = util.generateColorScale(colorBounds, numColors, colorScheme)
             var legend = util.generateLegend(colorScale, colorBy)
 
             for (var i = 0; i < data.length; i++) {
@@ -207,7 +210,9 @@ var mapping = function () {
                 zoom = o['zoom'],
                 colorBy = o['color_by_col'],
                 colorBounds = o['color_by_bounds'],
-                numColors = o['num_colors'] || 4
+                numColors = o['num_colors'] || 4,
+                colorScheme = o['color_scheme'] || 'sequential' // one of ('categorical' or 'sequential') default sequential
+
 
             var data = mode.getQueryContent(queryName)
             var inferred_columns = util.inferColumns(mode.getQueryColumns(queryName))
@@ -224,7 +229,7 @@ var mapping = function () {
             })
             
             colorBounds = colorBounds || util.inferColorBounds(colorBy, data)
-            var colorScale = util.generateColorScale(colorBounds, numColors)
+            var colorScale = util.generateColorScale(colorBounds, numColors, colorScheme)
             var legend = util.generateLegend(colorScale, colorBy)
             for (var i = 0; i < data.length; i++) {
                 var row = data[i]
@@ -259,7 +264,9 @@ var mapping = function () {
                 radius = o['radius'] || 10,
                 colorBy = o['color_by_col'],
                 colorBounds = o['color_by_bounds'],
-                numColors = o['num_colors'] || 1
+                numColors = o['num_colors'] || 1,
+                colorScheme = o['color_scheme'] || 'categorical' // one of ('categorical' or 'sequential') default categorical
+
 
             var data = mode.getQueryContent(queryName)
             var inferred_columns = util.inferColumns(mode.getQueryColumns(queryName))
@@ -273,7 +280,7 @@ var mapping = function () {
             })
 
             colorBounds = colorBounds || util.inferColorBounds(colorBy, data)
-            var colorScale = util.generateColorScale(colorBounds, numColors)
+            var colorScale = util.generateColorScale(colorBounds, numColors, colorScheme)
             var legend = util.generateLegend(colorScale, colorBy)
             for (var i = 0; i < data.length; i++) {
                 var row = data[i]
@@ -443,14 +450,14 @@ var mapping = function () {
                 '#135B96',
                 '#FFB38F'
             ]
-            var PALETTE_10 = ['#543005', '#8c510a', '#bf812d', '#dfc27d', '#f6e8c3', '#c7eae5', '#80cdc1', '#35978f', '#01665e', '#003c30']
+            var SEQUENTIAL_9 = ['#fcfbfd', '#efedf5', '#dadaeb', '#bcbddc', '#9e9ac8', '#807dba', '#6a51a3', '#54278f', '#3f007d']
 
             var chunk_size = (max - min) * 1.0 / n
             var breaks = []
             var colors = []
             for (var i = 0; i < n; i++) {
                 breaks.push(min + chunk_size * (i + 1))
-                colors.push(LYFT_CATEGORICAL_EXTENDED[i])
+                type == 'sequential' ? colors.push(SEQUENTIAL_9[i]) : colors.push(LYFT_CATEGORICAL_EXTENDED[i])
             }
             
             return {
