@@ -61,7 +61,7 @@ var mapping = function () {
                 colorBounds = o['color_by_bounds'],
                 numColors = o['num_colors'] || 4,
                 colorScheme = o['color_scheme'] || 'sequential', // one of ('categorical' or 'sequential') default sequential
-                showLegend = o['show_legend'] || true
+                showLegend = o['show_legend'] || false
 
             var data = mode.getQueryContent(queryName)
             var map = basemap.init({
@@ -169,7 +169,7 @@ var mapping = function () {
                 colorBounds = o['color_by_bounds'],
                 numColors = o['num_colors'] || 1,
                 colorScheme = o['color_scheme'] || 'categorical', // one of ('categorical' or 'sequential') default categorical
-                showLegend = o['show_legend'] || true
+                showLegend = o['show_legend'] || false
 
             var data = mode.getQueryContent(queryName)
             var map = basemap.init({
@@ -217,7 +217,7 @@ var mapping = function () {
                 colorBounds = o['color_by_bounds'],
                 numColors = o['num_colors'] || 4,
                 colorScheme = o['color_scheme'] || 'sequential', // one of ('categorical' or 'sequential') default sequential
-                showLegend = o['show_legend'] || true
+                showLegend = o['show_legend'] || false
 
             var data = mode.getQueryContent(queryName)
             var inferred_columns = util.inferColumns(mode.getQueryColumns(queryName))
@@ -273,7 +273,7 @@ var mapping = function () {
                 colorBounds = o['color_by_bounds'],
                 numColors = o['num_colors'] || 1,
                 colorScheme = o['color_scheme'] || 'categorical', // one of ('categorical' or 'sequential') default categorical
-                showLegend = o['show_legend'] || true
+                showLegend = o['show_legend'] || false
 
             var data = mode.getQueryContent(queryName)
             var inferred_columns = util.inferColumns(mode.getQueryColumns(queryName))
