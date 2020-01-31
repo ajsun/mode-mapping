@@ -60,7 +60,8 @@ var mapping = function () {
                 colorBy = o['color_by_col'],
                 colorBounds = o['color_by_bounds'],
                 numColors = o['num_colors'] || 4,
-                colorScheme = o['color_scheme'] || 'sequential' // one of ('categorical' or 'sequential') default sequential
+                colorScheme = o['color_scheme'] || 'sequential', // one of ('categorical' or 'sequential') default sequential
+                showLegend = o['show_legend'] || true
 
             var data = mode.getQueryContent(queryName)
             var map = basemap.init({
@@ -146,7 +147,9 @@ var mapping = function () {
             }
 
             info.addTo(map)
-            legend.addTo(map)
+            if (showLegend) {
+                legend.addTo(map)
+            }
 
             return map
         },
@@ -165,8 +168,8 @@ var mapping = function () {
                 colorBy = o['color_by_col'],
                 colorBounds = o['color_by_bounds'],
                 numColors = o['num_colors'] || 1,
-                colorScheme = o['color_scheme'] || 'categorical' // one of ('categorical' or 'sequential') default categorical
-
+                colorScheme = o['color_scheme'] || 'categorical', // one of ('categorical' or 'sequential') default categorical
+                showLegend = o['show_legend'] || true
 
             var data = mode.getQueryContent(queryName)
             var map = basemap.init({
@@ -193,7 +196,9 @@ var mapping = function () {
                     radius: radius
                 }).bindTooltip(util.generateDataHTML(inferred_columns.data, row)).addTo(map)
             }
-            legend.addTo(map)
+            if (showLegend) {
+                legend.addTo(map)
+            }
             return map
         },
         geohashes: function (o) {
@@ -211,8 +216,8 @@ var mapping = function () {
                 colorBy = o['color_by_col'],
                 colorBounds = o['color_by_bounds'],
                 numColors = o['num_colors'] || 4,
-                colorScheme = o['color_scheme'] || 'sequential' // one of ('categorical' or 'sequential') default sequential
-
+                colorScheme = o['color_scheme'] || 'sequential', // one of ('categorical' or 'sequential') default sequential
+                showLegend = o['show_legend'] || true
 
             var data = mode.getQueryContent(queryName)
             var inferred_columns = util.inferColumns(mode.getQueryColumns(queryName))
@@ -244,8 +249,10 @@ var mapping = function () {
 
                 gh.addTo(map)
             }
-
-            legend.addTo(map)
+            
+            if (showLegend) {
+                legend.addTo(map)
+            }
             return map
         },
         arcs: function (o) {
@@ -265,8 +272,8 @@ var mapping = function () {
                 colorBy = o['color_by_col'],
                 colorBounds = o['color_by_bounds'],
                 numColors = o['num_colors'] || 1,
-                colorScheme = o['color_scheme'] || 'categorical' // one of ('categorical' or 'sequential') default categorical
-
+                colorScheme = o['color_scheme'] || 'categorical', // one of ('categorical' or 'sequential') default categorical
+                showLegend = o['show_legend'] || true
 
             var data = mode.getQueryContent(queryName)
             var inferred_columns = util.inferColumns(mode.getQueryColumns(queryName))
@@ -312,8 +319,9 @@ var mapping = function () {
                     weight: 3
                 }).addTo(map)
             }
-            legend.addTo(map)
-
+            if (showLegend) {
+                legend.addTo(map)
+            }
             return map
         }
     }
