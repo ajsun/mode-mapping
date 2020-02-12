@@ -365,8 +365,8 @@ var mapping = function () {
             div.innerHTML += '<h4>' + colorBy + '</h4>'
             for (var i = 0; i < colorScale.n; i++) {
                 div.innerHTML +=
-                    '<i style="background:' + colorScale.colors[i].toFixed(2) + '"></i> ' + 
-                    (colorScale.breaks[i - 1] ? colorScale.breaks[i - 1].toFixed(2) + '&ndash;' : '<') + colorScale.breaks[i].toFixed(2) + '<br>'
+                    '<i style="background:' + colorScale.colors[i] + '"></i> ' + 
+                    (colorScale.breaks[i - 1] ? colorScale.breaks[i - 1] + '&ndash;' : '<') + colorScale.breaks[i] + '<br>'
             }
             legend.onAdd = function (map) {
                 return div;
