@@ -61,7 +61,8 @@ var mapping = function () {
                 colorBounds = o['color_by_bounds'],
                 numColors = o['num_colors'] || 4,
                 colorScheme = o['color_scheme'] || 'sequential', // one of ('categorical' or 'sequential') default sequential
-                showLegend = o['show_legend'] || false
+                showLegend = o['show_legend'] || false,
+                colors = o['colors']
 
             var data = mode.getQueryContent(queryName)
             var map = basemap.init({
@@ -76,7 +77,7 @@ var mapping = function () {
             geojsonCol = geojsonCol || inferred_columns.geojson
 
             colorBounds = colorBounds || util.inferColorBounds(colorBy, data)
-            var colorScale = util.generateColorScale(colorBounds, numColors, colorScheme)
+            var colorScale = util.generateColorScale(colorBounds, numColors, colorScheme, colors)
             var legend = util.generateLegend(colorScale, colorBy)
 
             var info = L.control();
@@ -169,7 +170,8 @@ var mapping = function () {
                 colorBounds = o['color_by_bounds'],
                 numColors = o['num_colors'] || 1,
                 colorScheme = o['color_scheme'] || 'categorical', // one of ('categorical' or 'sequential') default categorical
-                showLegend = o['show_legend'] || false
+                showLegend = o['show_legend'] || false,
+                colors = o['colors']
 
             var data = mode.getQueryContent(queryName)
             var map = basemap.init({
@@ -184,7 +186,7 @@ var mapping = function () {
             lng = lng || inferred_columns.lng
 
             colorBounds = colorBounds || util.inferColorBounds(colorBy, data)
-            var colorScale = util.generateColorScale(colorBounds, numColors, colorScheme)
+            var colorScale = util.generateColorScale(colorBounds, numColors, colorScheme, colors)
             var legend = util.generateLegend(colorScale, colorBy)
 
             for (var i = 0; i < data.length; i++) {
@@ -217,7 +219,8 @@ var mapping = function () {
                 colorBounds = o['color_by_bounds'],
                 numColors = o['num_colors'] || 4,
                 colorScheme = o['color_scheme'] || 'sequential', // one of ('categorical' or 'sequential') default sequential
-                showLegend = o['show_legend'] || false
+                showLegend = o['show_legend'] || false,
+                colors = o['colors']
 
             var data = mode.getQueryContent(queryName)
             var inferred_columns = util.inferColumns(mode.getQueryColumns(queryName))
@@ -234,7 +237,7 @@ var mapping = function () {
             })
             
             colorBounds = colorBounds || util.inferColorBounds(colorBy, data)
-            var colorScale = util.generateColorScale(colorBounds, numColors, colorScheme)
+            var colorScale = util.generateColorScale(colorBounds, numColors, colorScheme, colors)
             var legend = util.generateLegend(colorScale, colorBy)
             for (var i = 0; i < data.length; i++) {
                 var row = data[i]
@@ -273,7 +276,8 @@ var mapping = function () {
                 colorBounds = o['color_by_bounds'],
                 numColors = o['num_colors'] || 1,
                 colorScheme = o['color_scheme'] || 'categorical', // one of ('categorical' or 'sequential') default categorical
-                showLegend = o['show_legend'] || false
+                showLegend = o['show_legend'] || false,
+                colors = o['colors']
 
             var data = mode.getQueryContent(queryName)
             var inferred_columns = util.inferColumns(mode.getQueryColumns(queryName))
@@ -287,7 +291,7 @@ var mapping = function () {
             })
 
             colorBounds = colorBounds || util.inferColorBounds(colorBy, data)
-            var colorScale = util.generateColorScale(colorBounds, numColors, colorScheme)
+            var colorScale = util.generateColorScale(colorBounds, numColors, colorScheme, colors)
             var legend = util.generateLegend(colorScale, colorBy)
             for (var i = 0; i < data.length; i++) {
                 var row = data[i]
@@ -361,8 +365,8 @@ var mapping = function () {
             div.innerHTML += '<h4>' + colorBy + '</h4>'
             for (var i = 0; i < colorScale.n; i++) {
                 div.innerHTML +=
-                    '<i style="background:' + colorScale.colors[i] + '"></i> ' + 
-                    (colorScale.breaks[i - 1] ? colorScale.breaks[i - 1] + '&ndash;' : '<') + colorScale.breaks[i] + '<br>'
+                    '<i style="background:' + colorScale.colors[i].toFixed(2) + '"></i> ' + 
+                    (colorScale.breaks[i - 1] ? colorScale.breaks[i - 1].toFixed(2) + '&ndash;' : '<') + colorScale.breaks[i].toFixed(2) + '<br>'
             }
             legend.onAdd = function (map) {
                 return div;
@@ -433,9 +437,10 @@ var mapping = function () {
             }
             return colorScale.colors[colorScale.n - 1]
         },
-        generateColorScale: function(bounds, n, type) {
+        generateColorScale: function(bounds, n, type, c) {
             var min = bounds[0],
-                max = bounds[1]
+                max = bounds[1],
+                colorPalette = c
             var LYFT_CATEGORICAL_EXTENDED = [
                 '#523BE4',
                 '#FF5187',
@@ -458,8 +463,10 @@ var mapping = function () {
                 '#135B96',
                 '#FFB38F'
             ]
-            var SEQUENTIAL_9 = ['#fff7fb', '#ece2f0', '#d0d1e6', '#a6bddb', '#67a9cf', '#3690c0', '#02818a', '#016c59', '#014636']
-
+            var SEQUENTIAL_9 = ['#ffffcc', '#ffeda0', '#fed976', '#feb24c', '#fd8d3c', '#fc4e2a', '#e31a1c', '#bd0026', '#800026']
+            if (!colorPalette) {
+                colorPalette = (type == 'sequential') ? SEQUENTIAL_9 : LYFT_CATEGORICAL_EXTENDED
+            }
             var chunk_size = (max - min) * 1.0 / n
             var breaks = []
             var colors = []
