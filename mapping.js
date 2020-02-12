@@ -472,7 +472,7 @@ var mapping = function () {
             var colors = []
             for (var i = 0; i < n; i++) {
                 breaks.push(min + chunk_size * (i + 1))
-                type == 'sequential' ? colors.push(SEQUENTIAL_9[i]) : colors.push(LYFT_CATEGORICAL_EXTENDED[i])
+                colors.push(colorPalette[i])
             }
             
             return {
