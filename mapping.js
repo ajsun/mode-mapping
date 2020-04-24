@@ -304,12 +304,12 @@ var mapping = function () {
                     stroke: false
                 }).bindTooltip(util.generateDataHTML(inferred_columns.data, row)).addTo(map)
                 // destination dot
-                L.circleMarker([row[toLat], row[toLng]], {
-                    color: util.getColor(row[colorBy], colorScale),
-                    // fillColor: util.getColor(row[colorBy], colorScale),
-                    fillOpacity: fillOpacity,
-                    radius: radius
-                }).bindTooltip(util.generateDataHTML(inferred_columns.data, row)).addTo(map)
+//                 L.circleMarker([row[toLat], row[toLng]], {
+//                     color: util.getColor(row[colorBy], colorScale),
+//                     // fillColor: util.getColor(row[colorBy], colorScale),
+//                     fillOpacity: fillOpacity,
+//                     radius: radius
+//                 }).bindTooltip(util.generateDataHTML(inferred_columns.data, row)).addTo(map)
                 // drawing the arc
                 L.curve([
                     'M', 
